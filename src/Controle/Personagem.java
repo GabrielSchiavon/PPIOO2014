@@ -7,6 +7,7 @@
 package Controle;
 
 import java.io.Serializable;
+import java.util.Random;
 import java.util.Scanner;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -106,7 +107,7 @@ public class Personagem implements Serializable {
         return null;
     }
     
-    public Personagem adicionar(Personagem personagem, int opcao){
+    public Personagem addProtagonista(Personagem protagonista, int opcao){
         if (opcao == 1) {
             Scanner entrada = new Scanner(System.in);
             System.out.println("Selecione o personagem:");
@@ -117,45 +118,78 @@ public class Personagem implements Serializable {
             System.out.println("5) Cavaleiro");
             System.out.println("Opção: ");
             opcao = entrada.nextInt();
-            
+ 
             switch (opcao){
                 case 1:
-                    personagem.setNome("Guerreiro");
-                    personagem.setQuantidadeVida(500);
-                    personagem.setTaxaAtaque(35);
-                    personagem.setTaxaResistencia(50);
+                    protagonista.setNome("Guerreiro");
+                    protagonista.setQuantidadeVida(500);
+                    protagonista.setTaxaAtaque(35);
+                    protagonista.setTaxaResistencia(50);
                     break;
                 case 2:
-                    personagem.setNome("Mago");
-                    personagem.setQuantidadeVida(350);
-                    personagem.setTaxaAtaque(40);
-                    personagem.setTaxaResistencia(30);
+                    protagonista.setNome("Mago");
+                    protagonista.setQuantidadeVida(350);
+                    protagonista.setTaxaAtaque(40);
+                    protagonista.setTaxaResistencia(30);
                     break;
                 case 3:
-                    personagem.setNome("Clérigo");
-                    personagem.setQuantidadeVida(250);
-                    personagem.setTaxaAtaque(10);
-                    personagem.setTaxaResistencia(20);
+                    protagonista.setNome("Clérigo");
+                    protagonista.setQuantidadeVida(250);
+                    protagonista.setTaxaAtaque(10);
+                    protagonista.setTaxaResistencia(20);
                     break;
                 case 4:
-                    personagem.setNome("Arqueiro");
-                    personagem.setQuantidadeVida(350);
-                    personagem.setTaxaAtaque(40);
-                    personagem.setTaxaResistencia(25);
+                    protagonista.setNome("Arqueiro");
+                    protagonista.setQuantidadeVida(350);
+                    protagonista.setTaxaAtaque(40);
+                    protagonista.setTaxaResistencia(25);
                     break;
                 case 5:
-                    personagem.setNome("Cavaleiro");
-                    personagem.setQuantidadeVida(400);
-                    personagem.setTaxaAtaque(50);
-                    personagem.setTaxaResistencia(40);
+                    protagonista.setNome("Templarios");
+                    protagonista.setQuantidadeVida(400);
+                    protagonista.setTaxaAtaque(50);
+                    protagonista.setTaxaResistencia(40);
                     break;
-            }
-        } else {
-            personagem.setNome("Tanker");
-            personagem.setQuantidadeVida(500);
-            personagem.setTaxaAtaque(35);
-            personagem.setTaxaResistencia(50);
+            }      
         }
-        return personagem;
+        return protagonista;
+    }
+    
+    public Personagem addAntagonista(Personagem antagonista,int opcao){
+        Random gerador = new Random();
+        int valor = gerador.nextInt(101);
+        System.out.println("Valor: " + valor);
+        
+        if (valor >= 0 && valor <=20) {
+                antagonista.setNome("Terrorista");
+                antagonista.setQuantidadeVida(500);
+                antagonista.setTaxaAtaque(35);
+                antagonista.setTaxaResistencia(50);
+            } 
+            else if(valor >= 21 && valor <= 40){
+                antagonista.setNome("Xamã");
+                antagonista.setQuantidadeVida(350);
+                antagonista.setTaxaAtaque(40);
+                antagonista.setTaxaResistencia(30);
+            }
+            else if(valor >= 41 && valor <= 60){
+                antagonista.setNome("Exorcista");
+                antagonista.setQuantidadeVida(250);
+                antagonista.setTaxaAtaque(10);
+                antagonista.setTaxaResistencia(20);
+            }     
+            else if (valor >= 61 && valor <= 80){
+                antagonista.setNome("Gatuno");
+                antagonista.setQuantidadeVida(350);
+                antagonista.setTaxaAtaque(40);
+                antagonista.setTaxaResistencia(25);
+            }
+            else {
+                antagonista.setNome("Cavaleiro");
+                antagonista.setQuantidadeVida(400);
+                antagonista.setTaxaAtaque(50);
+                antagonista.setTaxaResistencia(40);
+            }
+        return antagonista;
     }
 }

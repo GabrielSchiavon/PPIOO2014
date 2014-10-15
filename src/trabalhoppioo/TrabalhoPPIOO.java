@@ -37,24 +37,18 @@ public class TrabalhoPPIOO {
             case 1:
                 System.out.println("\n\nAdicionar:\n");
                 System.out.println("1) Protagonista\n");
-                System.out.println("2) Antagonista\n");
-                System.out.println("Opcao: ");
-                opcao = entrada.nextInt();
-                
-                if (opcao == 1){                 
-                    personagem.adicionar(personagem, opcao);
-                    System.out.println("Nome: " + personagem.getNome());
-                    System.out.println("Quantidade de vida:"  + personagem.getQuantidadeVida());
-                    System.out.println("Taxa de Ataque: " + personagem.getTaxaAtaque());
-                    System.out.println("Taxa de Resistencia: " + personagem.getTaxaResistencia());
-                } 
-                else{
-                    personagem1.adicionar(personagem1, opcao);
-                    System.out.println("Nome: " + personagem1.getNome());
-                    System.out.println("Quantidade de vida:"  + personagem1.getQuantidadeVida());
-                    System.out.println("Taxa de Ataque: " + personagem1.getTaxaAtaque());
-                    System.out.println("Taxa de Resistencia: " + personagem1.getTaxaResistencia());
-                }
+                personagem.addProtagonista(personagem, opcao);
+                personagem1.addAntagonista(personagem1, opcao);
+                System.out.println("Protagonista:");
+                System.out.println("Nome: " + personagem.getNome());
+                System.out.println("Quantidade de vida:"  + personagem.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + personagem.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + personagem.getTaxaResistencia());
+                System.out.println("\nAntagonista:");
+                System.out.println("Nome: " + personagem1.getNome());
+                System.out.println("Quantidade de vida:"  + personagem1.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + personagem1.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + personagem1.getTaxaResistencia());            
                 break;
             case 2:
                 System.out.println("Protagonista:");
