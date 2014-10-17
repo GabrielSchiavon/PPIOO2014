@@ -58,18 +58,27 @@ public class Personagem implements Serializable {
         return "Controle.Personagem[ id=" + id + " ]";
     }
     
-    public String nome;
-    public int quantidadeVida;
-    public int taxaAtaque;
+    private String nome;
+    private int quantidadeVida;
+    private int taxaAtaque;
+    private int classe;
+    private int taxaResistencia;
+    
+    public int getClasse() {
+        return this.classe;
+    }
+
+    public void setClasse(int classe) {
+        this.classe = classe;
+    }
 
     public int getTaxaAtaque() {
-        return taxaAtaque;
+        return this.taxaAtaque;
     }
 
     public int getTaxaResistencia() {
         return taxaResistencia;
-    }
-    public int taxaResistencia;
+    }    
 
     public void setTaxaAtaque(int taxaAtaque) {
         this.taxaAtaque = taxaAtaque;
@@ -80,11 +89,11 @@ public class Personagem implements Serializable {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public int getQuantidadeVida() {
-        return quantidadeVida;
+        return this.quantidadeVida;
     }
 
     public void setNome(String nome) {
@@ -95,101 +104,86 @@ public class Personagem implements Serializable {
         this.quantidadeVida = quantidadeVida;
     }
     
-    private int getDano(){
-        return 0;
+    private int getDano(Personagem personagem){
+        return personagem.getTaxaAtaque();
     }
     
     private int getResistencia(){
-        return 0;
+        return this.taxaResistencia;
     }
     
     private String atacar(Personagem atacado){
         return null;
     }
     
-    public Personagem addProtagonista(Personagem protagonista, int opcao){
+    public Personagem addProtagonista(Personagem personagem, int opcao){
         if (opcao == 1) {
             Scanner entrada = new Scanner(System.in);
             System.out.println("Selecione o personagem:");
+            System.out.println("\nProtagonistas:");
             System.out.println("1) Guerreiro");
             System.out.println("2) Mago");
-            System.out.println("3) Clérigo");
-            System.out.println("4) Arqueiro");
-            System.out.println("5) Cavaleiro");
-            System.out.println("Opção: ");
+            System.out.println("3) Arqueiro");
+            System.out.println("\n Antagonistas:");
+            System.out.println("4) Exorcista");
+            System.out.println("5) Troll");
+            System.out.println("6) Vikings");
+            System.out.print("Opção: ");
             opcao = entrada.nextInt();
  
             switch (opcao){
                 case 1:
-                    protagonista.setNome("Guerreiro");
-                    protagonista.setQuantidadeVida(500);
-                    protagonista.setTaxaAtaque(35);
-                    protagonista.setTaxaResistencia(50);
+                    personagem.setNome("Guerreiro");
+                    personagem.setClasse(1);
+                    personagem.setQuantidadeVida(500);
+                    personagem.setTaxaAtaque(35);
+                    personagem.setTaxaResistencia(50);
                     break;
                 case 2:
-                    protagonista.setNome("Mago");
-                    protagonista.setQuantidadeVida(350);
-                    protagonista.setTaxaAtaque(40);
-                    protagonista.setTaxaResistencia(30);
+                    personagem.setNome("Mago");
+                    personagem.setClasse(2);
+                    personagem.setQuantidadeVida(350);
+                    personagem.setTaxaAtaque(40);
+                    personagem.setTaxaResistencia(30);
                     break;
                 case 3:
-                    protagonista.setNome("Clérigo");
-                    protagonista.setQuantidadeVida(250);
-                    protagonista.setTaxaAtaque(10);
-                    protagonista.setTaxaResistencia(20);
+                    personagem.setNome("Arqueiro");
+                    personagem.setClasse(3);
+                    personagem.setQuantidadeVida(350);
+                    personagem.setTaxaAtaque(35);
+                    personagem.setTaxaResistencia(25);
                     break;
                 case 4:
-                    protagonista.setNome("Arqueiro");
-                    protagonista.setQuantidadeVida(350);
-                    protagonista.setTaxaAtaque(40);
-                    protagonista.setTaxaResistencia(25);
+                    personagem.setNome("Exorcista");
+                    personagem.setClasse(4);
+                    personagem.setQuantidadeVida(250);
+                    personagem.setTaxaAtaque(10);
+                    personagem.setTaxaResistencia(20);
                     break;
                 case 5:
-                    protagonista.setNome("Templarios");
-                    protagonista.setQuantidadeVida(400);
-                    protagonista.setTaxaAtaque(50);
-                    protagonista.setTaxaResistencia(40);
+                    personagem.setNome("Troll");
+                    personagem.setClasse(5);
+                    personagem.setQuantidadeVida(400);
+                    personagem.setTaxaAtaque(40);
+                    personagem.setTaxaResistencia(50);
                     break;
+                case 6:
+                    personagem.setNome("Viking");
+                    personagem.setClasse(6);
+                    personagem.setQuantidadeVida(500);
+                    personagem.setTaxaAtaque(50);
+                    personagem.setTaxaResistencia(40);
             }      
         }
-        return protagonista;
+        return personagem;
     }
-    
-    public Personagem addAntagonista(Personagem antagonista,int opcao){
-        Random gerador = new Random();
-        int valor = gerador.nextInt(101);
-        System.out.println("Valor: " + valor);
         
-        if (valor >= 0 && valor <=20) {
-                antagonista.setNome("Terrorista");
-                antagonista.setQuantidadeVida(500);
-                antagonista.setTaxaAtaque(35);
-                antagonista.setTaxaResistencia(50);
-            } 
-            else if(valor >= 21 && valor <= 40){
-                antagonista.setNome("Xamã");
-                antagonista.setQuantidadeVida(350);
-                antagonista.setTaxaAtaque(40);
-                antagonista.setTaxaResistencia(30);
-            }
-            else if(valor >= 41 && valor <= 60){
-                antagonista.setNome("Exorcista");
-                antagonista.setQuantidadeVida(250);
-                antagonista.setTaxaAtaque(10);
-                antagonista.setTaxaResistencia(20);
-            }     
-            else if (valor >= 61 && valor <= 80){
-                antagonista.setNome("Gatuno");
-                antagonista.setQuantidadeVida(350);
-                antagonista.setTaxaAtaque(40);
-                antagonista.setTaxaResistencia(25);
-            }
-            else {
-                antagonista.setNome("Cavaleiro");
-                antagonista.setQuantidadeVida(400);
-                antagonista.setTaxaAtaque(50);
-                antagonista.setTaxaResistencia(40);
-            }
-        return antagonista;
+    public Personagem addSistema(Personagem personagemSistema, Personagem jogador ){
+        personagemSistema.setNome(jogador.getNome());
+        personagemSistema.setClasse(jogador.getClasse());
+        personagemSistema.setQuantidadeVida(jogador.getQuantidadeVida());
+        personagemSistema.setTaxaAtaque(jogador.getTaxaAtaque());
+        personagemSistema.setTaxaResistencia(jogador.getTaxaResistencia());
+        return personagemSistema;
     }
 }

@@ -58,12 +58,33 @@ public class Protagonista extends Personagem implements Serializable {
     }
     
 
-    public String atacar(){
+    public String atacar(Personagem atacado){
         return null;
     }
     
-    public void calcFatorInc(){
-        
+    public int calcFatorInc(Personagem personagem){
+        int valor = 0;
+        switch (personagem.getClasse()){
+            case 1: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.1);
+                break;
+            case 2: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.4);
+                break;
+            case 3: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.3);
+                break;
+            case 4: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.7);
+                break;
+            case 5: 
+                valor =(int) (personagem.getQuantidadeVida() * 0.1);  
+                break;
+            case 6: 
+                valor =(int) (personagem.getQuantidadeVida() * 0.1);  
+                break;
+        }
+        return valor;
     }
     
     public void incrementarVida(Personagem personagem, int fatorInc){

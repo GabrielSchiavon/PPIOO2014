@@ -22,14 +22,16 @@ public class TrabalhoPPIOO {
         Scanner entrada = new Scanner(System.in);
         int opcao;
         int valor;
-        Personagem personagem = new Personagem();
-        Personagem personagem1 = new Personagem();
+        Personagem jogador = new Personagem();
+        Personagem sistema = new Personagem();
+        
         do{
         System.out.println("************");
         System.out.println("*** MENU ***");
         System.out.println("************\n");
         System.out.println("1 - Criar personagem");
         System.out.println("2 - Listar ja Criados");
+        System.out.println("3 - Atacar");
         System.out.print("Opcao => ");
         opcao = entrada.nextInt();
         
@@ -37,30 +39,31 @@ public class TrabalhoPPIOO {
             case 1:
                 System.out.println("\n\nAdicionar:\n");
                 System.out.println("1) Protagonista\n");
-                personagem.addProtagonista(personagem, opcao);
-                personagem1.addAntagonista(personagem1, opcao);
-                System.out.println("Protagonista:");
-                System.out.println("Nome: " + personagem.getNome());
-                System.out.println("Quantidade de vida:"  + personagem.getQuantidadeVida());
-                System.out.println("Taxa de Ataque: " + personagem.getTaxaAtaque());
-                System.out.println("Taxa de Resistencia: " + personagem.getTaxaResistencia());
-                System.out.println("\nAntagonista:");
-                System.out.println("Nome: " + personagem1.getNome());
-                System.out.println("Quantidade de vida:"  + personagem1.getQuantidadeVida());
-                System.out.println("Taxa de Ataque: " + personagem1.getTaxaAtaque());
-                System.out.println("Taxa de Resistencia: " + personagem1.getTaxaResistencia());            
+                jogador.addProtagonista(jogador, opcao);
+                sistema.addSistema(sistema, jogador);
+                System.out.println("Jogador:");
+                System.out.println("Nome: " + jogador.getNome());
+                System.out.println("Quantidade de vida:"  + jogador.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + jogador.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + jogador.getTaxaResistencia());
+                System.out.println("\nSistema:");
+                System.out.println("Nome: " + sistema.getNome());
+                System.out.println("Quantidade de vida:"  + sistema.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + sistema.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + sistema.getTaxaResistencia());            
                 break;
+            
             case 2:
-                System.out.println("Protagonista:");
-                System.out.println("Nome: " + personagem.getNome());
-                System.out.println("Quantidade de vida:"  + personagem.getQuantidadeVida());
-                System.out.println("Taxa de Ataque: " + personagem.getTaxaAtaque());
-                System.out.println("Taxa de Resistencia: " + personagem.getTaxaResistencia());
-                System.out.println("\nAntagonista:");
-                System.out.println("Nome: " + personagem1.getNome());
-                System.out.println("Quantidade de vida:"  + personagem1.getQuantidadeVida());
-                System.out.println("Taxa de Ataque: " + personagem1.getTaxaAtaque());
-                System.out.println("Taxa de Resistencia: " + personagem1.getTaxaResistencia());
+                System.out.println("Jogador:");
+                System.out.println("Nome: " + jogador.getNome());
+                System.out.println("Quantidade de vida:"  + jogador.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + jogador.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + jogador.getTaxaResistencia());
+                System.out.println("\nSistema:");
+                System.out.println("Nome: " + sistema.getNome());
+                System.out.println("Quantidade de vida:"  + sistema.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + sistema.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + sistema.getTaxaResistencia());
                 break;
             default: System.out.println("Valor Invalido");
         }

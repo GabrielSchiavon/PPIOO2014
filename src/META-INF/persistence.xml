@@ -5,6 +5,7 @@
     <class>Controle.Personagem</class>
     <class>Controle.Protagonista</class>
     <class>Controle.Antagonista</class>
+    <class>Controle.Jogo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/trabalhoPPIOO"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

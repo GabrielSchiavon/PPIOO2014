@@ -1,0 +1,37 @@
+protagonista:
+  -Guerreiro (Vida Max = 500; Taxa Ataque = 35, resistencia = 50; FatorIncremento = 0.1)
+	Especializado no combate corpo a corpo, fica na linha de frente do ataque,
+	recebe a maior parte do dano.
+
+  -Mago (Vida Max = 350; Taxa Ataque = 40, resistencia = 30; FatorIncremento = 0.3)
+	Especializado em combate a média distancia, usa feitiços em seus ataques,
+	geralmente fica junto com os arqueiros na linha defensiva.
+
+  -Clérigo (Vida Max = 250; Taxa Ataque = 10, resistencia = 20; FatorIncremento = 0.7)
+	Especializado na cura dos membros da equipe, conjura bençãos e cura para proteçao
+	dos amigos.
+
+  -Arqueiro (Vida Max = 350; Taxa Ataque = 40, resistencia = 25; FatorIncremento = 0.3)
+	Especializado em ataques a longa distancia, muito ágil e com alta movimentação.
+
+  -Templarios (Vida Max = 400; Taxa Ataque = 50, resistencia = 40; FatorIncremento = 0.1)
+	Especializado no combate corpo a corpo, fica na linha de frente, ágil e alta mobilidade.  
+
+antagonista:
+  -Terrorista (Vida Max = 500; Taxa Ataque = 35, resistencia = 50; FatorIncremento = 0.1)
+	Especializado no combate corpo a corpo, fica na linha de frente do ataque,
+	recebe a maior parte do dano.
+
+  -Xamã (Vida Max = 350; Taxa Ataque = 40, resistencia = 30; FatorIncremento = 0.3)
+	Especializado em combate a média distancia, usa feitiços em seus ataques,
+	geralmente fica junto com os arqueiros na linha defensiva.
+
+  -Exorcista (Vida Max = 250; Taxa Ataque = 10, resistencia = 20; FatorIncremento = 0.5)
+	Especializado na cura dos membros da equipe, conjura bençãos e cura para proteçao
+	dos amigos.
+
+  -Gatuno (Vida Max = 350; Taxa Ataque = 40, resistencia = 25; FatorIncremento = 0.3)
+	Especializado em ataques a longa distancia, muito ágil e com alta movimentação.
+
+  -cavaleiros (Vida Max = 400; Taxa Ataque = 50, resistencia = 40; FatorIncremento = 0.1)
+	Especializado no combate corpo a corpo, fica na linha de frente, ágil e alta mobilidade.  
