@@ -1,30 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package trabalhoppioo;
 
 import Controle.Personagem;
 import java.util.Scanner;
 
-/**
- *
- * @author Guilherme
- */
 public class TrabalhoPPIOO {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int opcao;
         int valor;
-        Personagem jogador = new Personagem();
+       
+        Personagem personagem = new Personagem();
         Personagem sistema = new Personagem();
-        
+                
         do{
         System.out.println("************");
         System.out.println("*** MENU ***");
@@ -37,34 +25,44 @@ public class TrabalhoPPIOO {
         
         switch (opcao){
             case 1:
+                personagem.addProtagonista(personagem, opcao);
+                sistema.addSistema(sistema, personagem);
+
                 System.out.println("\n\nAdicionar:\n");
                 System.out.println("1) Protagonista\n");
-                jogador.addProtagonista(jogador, opcao);
-                sistema.addSistema(sistema, jogador);
+                
                 System.out.println("Jogador:");
-                System.out.println("Nome: " + jogador.getNome());
-                System.out.println("Quantidade de vida:"  + jogador.getQuantidadeVida());
-                System.out.println("Taxa de Ataque: " + jogador.getTaxaAtaque());
-                System.out.println("Taxa de Resistencia: " + jogador.getTaxaResistencia());
+                System.out.println("Nome: " + personagem.getNome());
+                System.out.println("Quantidade de vida:"  + personagem.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + personagem.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + personagem.getTaxaResistencia());
+                
                 System.out.println("\nSistema:");
                 System.out.println("Nome: " + sistema.getNome());
                 System.out.println("Quantidade de vida:"  + sistema.getQuantidadeVida());
                 System.out.println("Taxa de Ataque: " + sistema.getTaxaAtaque());
                 System.out.println("Taxa de Resistencia: " + sistema.getTaxaResistencia());            
                 break;
-            
+                
             case 2:
                 System.out.println("Jogador:");
-                System.out.println("Nome: " + jogador.getNome());
-                System.out.println("Quantidade de vida:"  + jogador.getQuantidadeVida());
-                System.out.println("Taxa de Ataque: " + jogador.getTaxaAtaque());
-                System.out.println("Taxa de Resistencia: " + jogador.getTaxaResistencia());
+                System.out.println("Nome: " + personagem.getNome());
+                System.out.println("Quantidade de vida:"  + personagem.getQuantidadeVida());
+                System.out.println("Taxa de Ataque: " + personagem.getTaxaAtaque());
+                System.out.println("Taxa de Resistencia: " + personagem.getTaxaResistencia());
+                
                 System.out.println("\nSistema:");
                 System.out.println("Nome: " + sistema.getNome());
                 System.out.println("Quantidade de vida:"  + sistema.getQuantidadeVida());
                 System.out.println("Taxa de Ataque: " + sistema.getTaxaAtaque());
                 System.out.println("Taxa de Resistencia: " + sistema.getTaxaResistencia());
                 break;
+                
+            case 3:
+                personagem.atacar(sistema,personagem);
+                System.out.println("Vida do adversario" + sistema.getQuantidadeVida());
+                break;
+                
             default: System.out.println("Valor Invalido");
         }
         System.out.println("Deseja de nv ? <1> SIM <2> NAO");

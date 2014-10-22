@@ -1,68 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Controle;
 
-import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author Guilherme
- */
-@Entity
-public class Personagem implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Personagem)) {
-            return false;
-        }
-        Personagem other = (Personagem) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Controle.Personagem[ id=" + id + " ]";
-    }
-    
+public class Personagem {
     private String nome;
+    private String tipo;
     private int quantidadeVida;
     private int taxaAtaque;
     private int classe;
     private int taxaResistencia;
+    private int VidaMax;
+
+    public void setVidaMax(int VidaMax) {
+        this.VidaMax = VidaMax;
+    }
+
+    public int getVidaMax() {
+        return VidaMax;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
     public int getClasse() {
         return this.classe;
@@ -108,11 +72,80 @@ public class Personagem implements Serializable {
         return personagem.getTaxaAtaque();
     }
     
+    private int reagir(int reducao){
+        int valor;
+        int gerador;
+        Random gera = new Random();
+        gerador = gera.nextInt(100);
+        
+        if (gerador > 75 && gerador < 100){
+            valor = reducao * 1;
+        } 
+        else if (gerador > 50  && gerador < 74){
+            valor = (int) (reducao * 0.75);
+        }
+        else {
+            valor = (int) (reducao * 0.3);
+        }
+        return valor;
+    }
+    
     private int getResistencia(){
         return this.taxaResistencia;
     }
     
-    private String atacar(Personagem atacado){
+    public int calcFatorInc(Personagem personagem){
+        int valor = 0;
+        switch (personagem.getClasse()){
+            case 1: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.1);
+                break;
+            case 2: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.4);
+                break;
+            case 3: 
+                valor = (int) (personagem.getQuantidadeVida() * 0.3);
+                break;
+            default:
+                System.out.println("Personagem nao é protagonista");
+        }
+        return valor;
+    }
+    
+    public String atacar(Personagem atacado,Personagem atacante){
+        int inicial, total;
+        inicial = atacado.getQuantidadeVida();
+        Scanner operacao = new Scanner(System.in);
+        int op;
+        
+        if (atacante.getTipo().equals("Protagonista")){
+            System.out.println("1) Atacar");
+            System.out.println("2) Curar");
+            op = operacao.nextInt();
+            if (op == 1){
+                atacado.setQuantidadeVida(inicial - getDano(atacante));
+                atacado.setQuantidadeVida(atacado.getQuantidadeVida() + reagir(atacado.getResistencia()));
+            }
+            else {
+                int valor = calcFatorInc(atacante) + atacado.getQuantidadeVida();
+                if (atacado.getQuantidadeVida() == atacado.getVidaMax()){
+                    System.out.println("Vida Completa");
+                }
+                else if (valor > atacado.getVidaMax()){
+                    valor = atacado.getVidaMax() - valor;
+                    atacado.setQuantidadeVida(atacado.getQuantidadeVida() + valor);
+                }
+                else {
+                    atacado.setQuantidadeVida(valor);
+                    System.out.println("Vida Recuperada em ");
+                }
+            }
+        }
+        else {
+            
+        }
+        total = inicial - atacado.getQuantidadeVida();
+        System.out.println("Dano total de " + total);
         return null;
     }
     
@@ -134,45 +167,58 @@ public class Personagem implements Serializable {
             switch (opcao){
                 case 1:
                     personagem.setNome("Guerreiro");
+                    personagem.setTipo("Protagonista");
                     personagem.setClasse(1);
                     personagem.setQuantidadeVida(500);
+                    personagem.setVidaMax(500);
                     personagem.setTaxaAtaque(35);
                     personagem.setTaxaResistencia(50);
                     break;
                 case 2:
                     personagem.setNome("Mago");
+                    personagem.setTipo("Protagonista");
                     personagem.setClasse(2);
                     personagem.setQuantidadeVida(350);
+                    personagem.setVidaMax(350);
                     personagem.setTaxaAtaque(40);
                     personagem.setTaxaResistencia(30);
                     break;
                 case 3:
                     personagem.setNome("Arqueiro");
+                    personagem.setTipo("Protagonista");
                     personagem.setClasse(3);
                     personagem.setQuantidadeVida(350);
+                    personagem.setVidaMax(350);
                     personagem.setTaxaAtaque(35);
                     personagem.setTaxaResistencia(25);
                     break;
                 case 4:
                     personagem.setNome("Exorcista");
+                    personagem.setTipo("Antagonista");
                     personagem.setClasse(4);
                     personagem.setQuantidadeVida(250);
+                    personagem.setVidaMax(250);
                     personagem.setTaxaAtaque(10);
                     personagem.setTaxaResistencia(20);
                     break;
                 case 5:
                     personagem.setNome("Troll");
+                    personagem.setTipo("Antagonista");
                     personagem.setClasse(5);
                     personagem.setQuantidadeVida(400);
+                    personagem.setVidaMax(400);
                     personagem.setTaxaAtaque(40);
                     personagem.setTaxaResistencia(50);
                     break;
                 case 6:
                     personagem.setNome("Viking");
+                    personagem.setTipo("Antagonista");
                     personagem.setClasse(6);
                     personagem.setQuantidadeVida(500);
+                    personagem.setVidaMax(500);
                     personagem.setTaxaAtaque(50);
                     personagem.setTaxaResistencia(40);
+                    break;
             }      
         }
         return personagem;
@@ -180,6 +226,7 @@ public class Personagem implements Serializable {
         
     public Personagem addSistema(Personagem personagemSistema, Personagem jogador ){
         personagemSistema.setNome(jogador.getNome());
+        personagemSistema.setTipo(jogador.getTipo());
         personagemSistema.setClasse(jogador.getClasse());
         personagemSistema.setQuantidadeVida(jogador.getQuantidadeVida());
         personagemSistema.setTaxaAtaque(jogador.getTaxaAtaque());
